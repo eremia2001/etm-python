@@ -40,10 +40,10 @@ def main():
             if not file_path:
                 raise ValueError("Keine CSV-Datei ausgewählt!")
             
-            if not file_path.endswith('.CSV'):
+            if not file_path.endswith('.csv'):
                 raise ValueError("Bitte wählen Sie eine gültige CSV-Datei aus!")
             
-            data = convert_csv_to_json(file_path)
+            data = convert_csv_to_json(file_path,"balbajs.json")
             
             # Den Benutzer fragen, wohin die Datei gespeichert werden soll
             save_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
