@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import filedialog, Label, Frame, font, Toplevel, Text, Scrollbar
-
+from csvConvert import remove_spaces
 from csv_to_json import convert_csv_to_json
 from create_structured_csv import create_structured_csv
+from create_structured_KTL import create_structured_ktl
 
 def main():
     # Erstellen Sie das Hauptfenster
@@ -43,7 +44,8 @@ def main():
             if not file_path.endswith('.csv'):
                 raise ValueError("Bitte wählen Sie eine gültige CSV-Datei aus!")
             
-            data = convert_csv_to_json(file_path,"balbajs.json")
+            remove_spaces(file_path)
+            data = convert_csv_to_json(file_path,"balbajs2.json")
             
             # Den Benutzer fragen, wohin die Datei gespeichert werden soll
             save_path = filedialog.asksaveasfilename(defaultextension=".csv", filetypes=[("CSV files", "*.csv")])
@@ -51,7 +53,7 @@ def main():
             if not save_path:
                 raise ValueError("Kein Speicherort ausgewählt!")
             
-            create_structured_csv(data, save_path)
+            create_structured_ktl(data, save_path)
         except Exception as e:
             show_error(str(e))
 
